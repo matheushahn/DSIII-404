@@ -1,0 +1,4 @@
+1. Como um doador eu quero ofertar um móvel ou objeto de modo que eu possa me desfazer de algo que não tem mais utilidade para mim.
+2. Eu, enquanto recebedor quero ganhar um móvel ou objeto de uma forma que eu não precise gastar dinheiro.
+3. Para dar algo que não uso mais, enquanto doador, eu quero usar uma plataforma que permita essa transição de forma segura.
+4. Eu, enquanto recebedor quero encontrar objetos úteis para meu uso e de fácil coleta.
