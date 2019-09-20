@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Bota Fora</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,11 +13,12 @@
           <ion-input formControlName="email" type="email"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Password</ion-label>
+          <ion-label>Senha</ion-label>
           <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
 
-        <ion-button (click)="login()" [disabled]="loginFormGroup.invalid" margin-top expand="full">Login</ion-button>
+        <ion-button (click)="login()" [disabled]="loginFormGroup.invalid" margin-top expand="full">Entrar</ion-button>
+        <ion-button fill="clear" expand="full">Ou criar uma conta</ion-button>
       </form>
     </ion-card-content>
   </ion-card>

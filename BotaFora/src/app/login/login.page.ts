@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginCredential } from '../interfaces/LoginCredential';
-import { ToastController } from '@ionic/angular';
+import { ToastController, MenuController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   loginFormGroup: FormGroup;
 
   constructor(
+    private _menuController: MenuController,
     private _toastController: ToastController,
     private _router: Router,
     private _authenticationService: AuthenticationService,
@@ -26,6 +27,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this._menuController.enable(false);
   }
 
   login() {
