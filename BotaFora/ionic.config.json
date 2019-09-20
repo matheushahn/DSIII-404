@@ -1,7 +1,5 @@
 {
   "name": "BotaFora",
-  "integrations": {
-    "cordova": {}
-  },
+  "integrations": {},
   "type": "angular"
 }
