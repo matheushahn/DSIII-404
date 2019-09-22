@@ -1,0 +1,60 @@
+<ion-app>
+    <ion-header translucent>
+        <ion-toolbar>
+            <ion-title>Criar Conta</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <form>
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                <ion-item>
+                    <ion-label position="stacked">Nome
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required="true" type="text" [(ngModel)]="firstName" name="firstName"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">Sobrenome
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required=true type="text" [(ngModel)]="lastName" name="lastName"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">E-Mail
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required="true" type="email" [(ngModel)]="email" name="email"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">Senha
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required="true" type="password" [(ngModel)]="password" name="password"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">Confirme a senha
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required="true" type="password" [(ngModel)]="confirmedPassword" name="confirmedPassword"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">Endereço</ion-label>
+                    <ion-input placeholder="Rua"></ion-input>
+                    <ion-input placeholder="Número"></ion-input>
+                    <ion-input placeholder="Complemento"></ion-input>
+                    <ion-input placeholder="Estado"></ion-input>
+                    <ion-input placeholder="CEP"></ion-input>
+                </ion-item>
+
+                <div class="ion-padding">
+                    <ion-button expand="block" type="submit" (click)="createAccount()" class="ion-no-margin">Criar conta</ion-button>
+                </div>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-app>
