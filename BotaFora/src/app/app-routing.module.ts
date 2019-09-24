@@ -15,9 +15,13 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
-  { path: 'signup', loadChildren: './signup/signup.module#signupPageModule' },
+  { 
+    path: 'signup', 
+    loadChildren:  () => import('./signup/signup.module').then(m => m.SignupPageModule) 
+  },
   { path: 'objectDonate', loadChildren: './objectDonate/objectDonate.module#ObjectDonatePageModule' },
   { path: 'objectDonate/:id', loadChildren: './objectDonate/objectDonate.module#ObjectDonatePageModule' },
+
 
 ];
 

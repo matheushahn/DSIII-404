@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoginCredential } from '../interfaces/LoginCredential';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { RegisterCredential } from '../interfaces/RegisterCredential';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AuthenticationService {
   constructor(private _angularFireAuth: AngularFireAuth) {}
 
-  registerUser(credencials: LoginCredential): Promise<firebase.auth.UserCredential> {
+  registerUser(credencials: RegisterCredential): Promise<firebase.auth.UserCredential> {
     return this._angularFireAuth.auth.createUserWithEmailAndPassword(
       credencials.email, 
       credencials.password

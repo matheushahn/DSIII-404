@@ -17,8 +17,8 @@
           <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
 
-        <ion-button (click)="login()" [disabled]="loginFormGroup.invalid" margin-top expand="full">Entrar</ion-button>
-        <ion-button fill="clear" expand="full">Ou criar uma conta</ion-button>
+        <ion-button (click)="login()" [disabled]="loginFormGroup.invalid" class="ion-margin-top" expand="full">Entrar</ion-button>
+        <ion-button routerLink="/signup" fill="clear" expand="full" routerDirection="forward">Ou criar uma conta</ion-button>
       </form>
     </ion-card-content>
   </ion-card>
