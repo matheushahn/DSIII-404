@@ -34,4 +34,8 @@ export class AuthenticationService {
       }
     })
   }
+
+  getAuth() {
+    return this._angularFireAuth.auth;
+  }
 }

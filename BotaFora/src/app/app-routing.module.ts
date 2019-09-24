@@ -11,11 +11,13 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
-  { 
-    path: 'login', 
+  {
+    path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
-  { path: 'signup', loadChildren: './signup/signup.module#signupPageModule' }
+  { path: 'signup', loadChildren: './signup/signup.module#signupPageModule' },
+  { path: 'objectDonate', loadChildren: './objectDonate/objectDonate.module#ObjectDonatePageModule' },
+  { path: 'objectDonate/:id', loadChildren: './objectDonate/objectDonate.module#ObjectDonatePageModule' },
 
 ];
 
@@ -25,4 +27,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
