@@ -5,7 +5,7 @@ export interface Object {
     description?: String;
     city?: String;
     state?: String;
-    zipcode?: String;
+    cep?: String;
     createdAt?: number;
     userId?: String;
 }
