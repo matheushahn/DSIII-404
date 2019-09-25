@@ -37,7 +37,7 @@ export class ObjectDonatePage implements OnInit {
       description: ["", [Validators.required]],
       city: ["", [Validators.required]],
       state: ["", [Validators.required]],
-      cep: ["", [Validators.required]]
+      cep: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('[0-9]*')]]
     });
   }
 
