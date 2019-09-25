@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
 
@@ -29,6 +30,7 @@ import { NgxMaskIonicModule } from 'ngx-mask-ionic';
     NgxMaskIonicModule.forRoot()
   ],
   providers: [
+    Camera,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

@@ -7,6 +7,12 @@
   <ion-content>
     <ion-card class="ion-no-margin">
       <ion-card-content>
+        <ion-card>
+          <ion-img class="myImage" (click)="selectImageSource()" [src]="imageSrc"></ion-img>
+          <ion-card-header>
+            <ion-card-title>Imagem</ion-card-title>
+          </ion-card-header>
+        </ion-card>
         <form [formGroup]="objectDonateFormGroup">
           <ion-item>
             <ion-label position="stacked">Dados Básicos</ion-label>

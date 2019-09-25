@@ -3,9 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ObjectService } from 'src/app/services/object.service';
 import { ActivatedRoute } from '@angular/router';
 import { Object } from 'src/app/interfaces/Object';
-import { NavController, LoadingController, ToastController } from '@ionic/angular';
+import { NavController, LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Subscription } from 'rxjs';
+import { CameraOptions, Camera } from "@ionic-native/camera/ngx"
 
 @Component({
   selector: 'app-objectDonate',
@@ -14,6 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class ObjectDonatePage implements OnInit {
   private objectId: string = null;
+  private imageSrc: string;
   public object: Object = {};
   private loading: any;
   private objectSubscription: Subscription;
@@ -22,6 +24,8 @@ export class ObjectDonatePage implements OnInit {
   constructor(
     private objectService: ObjectService,
     private activatedRoute: ActivatedRoute,
+    private _alertController: AlertController,
+    private _camera: Camera,
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
     private authenticationService: AuthenticationService,
@@ -53,8 +57,8 @@ export class ObjectDonatePage implements OnInit {
     await this.presentLoading();
 
     this.objectDonateFormGroup.value.userId = this.authenticationService.getAuth().currentUser.uid;
-
     this.objectDonateFormGroup.value.createdAt = new Date().getTime();
+    this.objectDonateFormGroup.value.imageSrc = this.imageSrc;    
 
     try {
       await this.objectService.addObject(this.objectDonateFormGroup.value);
@@ -75,5 +79,55 @@ export class ObjectDonatePage implements OnInit {
   async presentToast(message: string) {
     const toast = await this.toastCtrl.create({ message, duration: 2000 });
     toast.present();
+  }
+
+  async selectImageSource() {
+    const cameraOptions: CameraOptions = {
+      quality: 100,
+      destinationType: this._camera.DestinationType.DATA_URL,
+      encodingType: this._camera.EncodingType.JPEG,
+      mediaType: this._camera.MediaType.PICTURE,
+      targetHeight: 200,
+      targetWidth: 200,
+      correctOrientation: true,
+      sourceType: this._camera.PictureSourceType.CAMERA
+    };
+
+    const galeryOptions: CameraOptions = {
+      quality: 100,
+      destinationType: this._camera.DestinationType.DATA_URL,
+      encodingType: this._camera.EncodingType.JPEG,
+      mediaType: this._camera.MediaType.PICTURE,
+      targetHeight: 200,
+      targetWidth: 200,
+      correctOrientation: true,
+      sourceType: this._camera.PictureSourceType.SAVEDPHOTOALBUM
+    };
+
+    const alert = await this._alertController.create({
+      header: "Select source",
+      message: "Pick a source for your image",
+      buttons: [
+        {
+          text: "Camera",
+          handler: () => {
+            this._camera.getPicture(cameraOptions)
+              .then((imageData) => {
+                this.imageSrc = "data:image/jpeg;base64," + imageData;
+              })
+          }
+        }, {
+          text: "Galery",
+          handler: () => {
+            this._camera.getPicture(galeryOptions)
+              .then((imageData) => {
+                this.imageSrc = "data:image/jpeg;base64," + imageData;
+              })
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

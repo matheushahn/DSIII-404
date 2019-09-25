@@ -8,4 +8,5 @@ export interface Object {
     cep?: String;
     createdAt?: number;
     userId?: String;
+    imageSrc?: String;
 }
