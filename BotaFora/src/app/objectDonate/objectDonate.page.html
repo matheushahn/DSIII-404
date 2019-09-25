@@ -29,7 +29,7 @@
             <ion-input placeholder="Estado" type="text" formControlName="state"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="CEP" type="string" formControlName="cep" ui-br-cep-mask></ion-input>
+            <ion-input placeholder="CEP" type="string" formControlName="cep" mask="000.000.000-00"></ion-input>
           </ion-item>
 
           <ion-button [disabled]="objectDonateFormGroup.invalid" class="ion-margin" ion-padding expand="block" type="submit" (click)="saveObject()">Cadastrar Objeto!</ion-button>

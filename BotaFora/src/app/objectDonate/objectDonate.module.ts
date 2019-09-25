@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ObjectDonatePage } from './objectDonate.page';
+import { NgxMaskIonicModule } from 'ngx-mask-ionic';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxMaskIonicModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ObjectDonatePage]
