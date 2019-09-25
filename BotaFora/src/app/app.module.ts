@@ -14,6 +14,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 
+import { NgxMaskIonicModule } from 'ngx-mask-ionic';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,7 +25,8 @@ import { environment } from 'src/environments/environment';
     AngularFirestoreModule,
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    NgxMaskIonicModule.forRoot()
   ],
   providers: [
     StatusBar,

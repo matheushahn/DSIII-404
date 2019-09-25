@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { SignupPage } from './signup.page';
 
+import { NgxMaskIonicModule } from 'ngx-mask-ionic';
+
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxMaskIonicModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SignupPage]
