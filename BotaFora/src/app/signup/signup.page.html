@@ -39,7 +39,7 @@
             <ion-input placeholder="Estado" type="text" formControlName="state"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="CEP" type="text" formControlName="cep"></ion-input>
+            <ion-input placeholder="CEP" type="string" formControlName="cep" ui-br-cep-mask></ion-input>
           </ion-item>
 
           <ion-button [disabled]="registerFormGroup.invalid" class="ion-margin" ion-padding expand="block" type="submit" (click)="createAccount()">Criar conta</ion-button>

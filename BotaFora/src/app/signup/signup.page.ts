@@ -29,9 +29,9 @@ export class SignupPage implements OnInit {
         confirmedPassword: ["", [Validators.required, Validators.minLength(6)]],
         street: ["", [Validators.required]],
         number: ["", [Validators.required]],
-        complement: ["", [Validators.required]],
+        complement: [""],
         state: ["", [Validators.required]],
-        cep: ["", [Validators.required]]
+        cep: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('[0-9]*')]]
       }, {validator: this.checkPasswords })
   }
 
