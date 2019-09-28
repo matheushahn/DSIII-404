@@ -21,6 +21,24 @@
           <ion-item>
             <ion-input placeholder="Descrição" type="text" formControlName="description"></ion-input>
           </ion-item>
+          <ion-item>
+              <ion-label class="dropLabel">Categoria</ion-label>
+              <ion-select formControlName="category" cancel-text="Cancelar" ok-text="Selecionar">
+                  <ion-select-option value="Escrivaninhas">Escrivaninhas</ion-select-option>
+                  <ion-select-option value="Mesas">Mesas</ion-select-option>
+                  <ion-select-option value="Mesas de centro">Mesas de centro</ion-select-option>
+                  <ion-select-option value="Cadeiras">Cadeiras</ion-select-option>
+                  <ion-select-option value="Cadeiras de escritorio">Cadeiras de escritório</ion-select-option>
+                  <ion-select-option value="Racks">Racks</ion-select-option>
+                  <ion-select-option value="Puffs">Puffs</ion-select-option>
+                  <ion-select-option value="Poltronas">Poltronas</ion-select-option>
+                  <ion-select-option value="Sofás">Sofás</ion-select-option>
+                  <ion-select-option value="Guarda-roupas">Guarda-roupas</ion-select-option>
+                  <ion-select-option value="Armários">Armários</ion-select-option>
+                  <ion-select-option value="Estantes">Estantes</ion-select-option>
+                  <ion-select-option value="Camas">Camas</ion-select-option>
+              </ion-select>
+          </ion-item>        
           <ion-item class="ion-margin-top">
             <ion-label position="stacked">Localização</ion-label>
             <ion-input placeholder="Cidade" type="text" formControlName="city"></ion-input>
