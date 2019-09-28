@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalhes do objeto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+  <ion-label>
+    <h1>{{ object.name }}</h1>
+  </ion-label>
+  <ion-card>
+    <img [src]="object.imageSrc" />
+    <ion-card-header>
+      <ion-label>
+        <p>Publicado em {{ object.createdAt | date: 'dd/MM/yyyy' }} às {{ object.createdAt | date: 'HH:mm' }}</p>
+      </ion-label>
+    </ion-card-header>
+  </ion-card>
+  <ion-list>
+    <ion-list-header>
+      Descrição
+    </ion-list-header>
+    <ion-item>
+      <ion-text>{{ object.description }}</ion-text>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Categoria
+    </ion-list-header>
+    <ion-item>
+      <ion-label>{{ object.category }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Localização
+    </ion-list-header>
+    <ion-item>
+      <ion-label>{{object.city}} / {{ object.state }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block">
+      Tenho interesse!
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

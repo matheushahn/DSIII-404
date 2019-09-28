@@ -21,6 +21,9 @@ const routes: Routes = [
   },
   { path: 'objectDonate', loadChildren: './objectDonate/objectDonate.module#ObjectDonatePageModule' },
   { path: 'objectDonate/:id', loadChildren: './objectDonate/objectDonate.module#ObjectDonatePageModule' },
+  { path: 'objectDetails', loadChildren: './objectDetails/objectDetails.module#ObjectDetailsPageModule' },
+  { path: 'objectDetails/:id', loadChildren: './objectDetails/objectDetails.module#ObjectDetailsPageModule' },
+
 
 
 ];

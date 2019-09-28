@@ -105,11 +105,11 @@ export class ObjectDonatePage implements OnInit {
     };
 
     const alert = await this._alertController.create({
-      header: "Select source",
-      message: "Pick a source for your image",
+      header: "Selecione a imagem",
+      message: "Escolha a origem da imagem",
       buttons: [
         {
-          text: "Camera",
+          text: "Câmera",
           handler: () => {
             this._camera.getPicture(cameraOptions)
               .then((imageData) => {
@@ -117,7 +117,7 @@ export class ObjectDonatePage implements OnInit {
               })
           }
         }, {
-          text: "Galery",
+          text: "Galeria",
           handler: () => {
             this._camera.getPicture(galeryOptions)
               .then((imageData) => {

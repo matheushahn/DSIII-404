@@ -7,9 +7,9 @@
 <ion-content>
   <ion-list>
     <ion-item-group *ngFor="let object of objects">
-      <ion-item button>
-        <ion-avatar slot="start" *ngIf="object.thumbnail">
-          <img [src]="object.thumbnail">
+      <ion-item button [routerLink]="['/objectDetails', object.id]">
+        <ion-avatar slot="start" *ngIf="object.imageSrc">
+          <img [src]="object.imageSrc">
         </ion-avatar>
         <ion-label>
           <p>{{ object.name }}</p>
