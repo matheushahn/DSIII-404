@@ -3,6 +3,7 @@ export interface Object {
     name?: String;
     thumbnail?: String;
     description?: String;
+    category?: String;
     city?: String;
     state?: String;
     cep?: String;

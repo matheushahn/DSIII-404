@@ -5,8 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Object } from 'src/app/interfaces/Object';
 import { NavController, LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { CameraOptions, Camera } from "@ionic-native/camera/ngx"
+import { CategoryService } from '../services/category.service';
+import { Category } from '../interfaces/Category';
 
 @Component({
   selector: 'app-objectDonate',
@@ -20,9 +22,11 @@ export class ObjectDonatePage implements OnInit {
   private loading: any;
   private objectSubscription: Subscription;
   objectDonateFormGroup: FormGroup;
+  categories: Observable<Array<Category>>;
 
   constructor(
     private objectService: ObjectService,
+    private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
     private _alertController: AlertController,
     private _camera: Camera,
@@ -37,11 +41,14 @@ export class ObjectDonatePage implements OnInit {
       description: ["", [Validators.required]],
       city: ["", [Validators.required]],
       state: ["", [Validators.required]],
-      cep: ["", [Validators.required, Validators.minLength(9), Validators.maxLength(9)]]
+      cep: ["", [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+      category: ["", [Validators.required]]
     });
+    this.categories = this.categoryService.getCategories();
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
 
   ngOnDestroy() {
     if (this.objectSubscription) this.objectSubscription.unsubscribe();
@@ -58,7 +65,7 @@ export class ObjectDonatePage implements OnInit {
 
     this.objectDonateFormGroup.value.userId = this.authenticationService.getAuth().currentUser.uid;
     this.objectDonateFormGroup.value.createdAt = new Date().getTime();
-    this.objectDonateFormGroup.value.imageSrc = this.imageSrc;    
+    this.objectDonateFormGroup.value.imageSrc = this.imageSrc ? this.imageSrc : ""; 
 
     try {
       await this.objectService.addObject(this.objectDonateFormGroup.value);

@@ -24,7 +24,9 @@
           <ion-item>
               <ion-label class="dropLabel">Categoria</ion-label>
               <ion-select formControlName="category" cancel-text="Cancelar" ok-text="Selecionar">
-                  <ion-select-option value="Escrivaninhas">Escrivaninhas</ion-select-option>
+                
+                  <ion-select-option *ngFor="let c of (categories | async)" [value]="c.category">{{c.category}}</ion-select-option>
+                  <!-- <ion-select-option value="Escrivaninhas">Escrivaninhas</ion-select-option>
                   <ion-select-option value="Mesas">Mesas</ion-select-option>
                   <ion-select-option value="Mesas de centro">Mesas de centro</ion-select-option>
                   <ion-select-option value="Cadeiras">Cadeiras</ion-select-option>
@@ -36,7 +38,7 @@
                   <ion-select-option value="Guarda-roupas">Guarda-roupas</ion-select-option>
                   <ion-select-option value="Armários">Armários</ion-select-option>
                   <ion-select-option value="Estantes">Estantes</ion-select-option>
-                  <ion-select-option value="Camas">Camas</ion-select-option>
+                  <ion-select-option value="Camas">Camas</ion-select-option> -->
               </ion-select>
           </ion-item>        
           <ion-item class="ion-margin-top">
