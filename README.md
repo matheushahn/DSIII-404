@@ -17,6 +17,9 @@ de tal coisa
 
 E é isso! O app estará rodando no browser. Recomendo utilizar o [Chrome DevTools no modo mobile](https://developers.google.com/web/tools/chrome-devtools/device-mode/).
 
+## Acesso ao app no Firebase Hosting
+- https://botafora-2e068.firebaseapp.com/
+
 ## Documentação
 - [Ionic Docs](https://ionicframework.com/docs/)
 
