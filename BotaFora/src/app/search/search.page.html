@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buscar</ion-title>
+    <ion-buttons slot="primary">
+       <ion-icon name="arrow" routerLink="/home" class="header_back"></ion-icon>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="searchFormGroup">
+        <ion-searchbar searchIcon="false" placeholder="Busca por nome" formControlName="searchTerm"></ion-searchbar>
+        <ion-item>
+            <ion-label>Estado</ion-label>
+            <ion-input formControlName="state" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cidade</ion-label>
+            <ion-input formControlName="city" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Categoria</ion-label>
+            <ion-select formControlName="category" cancel-text="Cancelar" ok-text="Selecionar">                
+                  <ion-select-option *ngFor="let c of (categories | async)" [value]="c.category">{{c.category}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+    </form>
+
+</ion-content>
