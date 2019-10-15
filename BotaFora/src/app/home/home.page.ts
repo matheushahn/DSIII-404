@@ -3,7 +3,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ObjectService } from 'src/app/services/object.service';
 import { Object } from 'src/app/interfaces/Object';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomePage implements OnInit {
   private loading: any;
-  private objects = new Array<Object>();
-  private objectsSubscription: Subscription;
+  objects: Observable<Object[]>;
 
   constructor(
     private authService: AuthenticationService,
@@ -21,16 +20,12 @@ export class HomePage implements OnInit {
     private objectService: ObjectService,
     private toastCtrl: ToastController
   ) {
-    this.objectsSubscription = this.objectService.getObjects().subscribe(data => {
-      this.objects = data;
-    });
+    this.objects= this.objectService.getObjects();
   }
 
   ngOnInit() { }
 
-  ngOnDestroy() {
-    this.objectsSubscription.unsubscribe();
-  }
+  ngOnDestroy() { }
 
   async logout() {
     await this.presentLoading();

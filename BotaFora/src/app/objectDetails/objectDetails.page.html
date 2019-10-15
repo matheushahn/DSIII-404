@@ -6,13 +6,13 @@
 
 <ion-content fullscreen class="ion-padding">
   <ion-label>
-    <h1>{{ object.name }}</h1>
+    <h1>{{ (object | async)?.name }}</h1>
   </ion-label>
   <ion-card>
-    <img [src]="object.imageSrc" />
+    <img [src]="(object | async)?.imageSrc" />
     <ion-card-header>
       <ion-label>
-        <p>Publicado em {{ object.createdAt | date: 'dd/MM/yyyy' }} às {{ object.createdAt | date: 'HH:mm' }}</p>
+        <p>Publicado em {{ (object | async)?.createdAt | date: 'dd/MM/yyyy' }} às {{ (object | async)?.createdAt | date: 'HH:mm' }}</p>
       </ion-label>
     </ion-card-header>
   </ion-card>
@@ -21,7 +21,7 @@
       Descrição
     </ion-list-header>
     <ion-item>
-      <ion-text>{{ object.description }}</ion-text>
+      <ion-text>{{ (object | async)?.description }}</ion-text>
     </ion-item>
   </ion-list>
   <ion-list>
@@ -29,7 +29,7 @@
       Categoria
     </ion-list-header>
     <ion-item>
-      <ion-label>{{ object.category }}</ion-label>
+      <ion-label>{{ (object | async)?.category }}</ion-label>
     </ion-item>
   </ion-list>
   <ion-list>
@@ -37,7 +37,7 @@
       Localização
     </ion-list-header>
     <ion-item>
-      <ion-label>{{object.city}} / {{ object.state }}</ion-label>
+      <ion-label>{{(object | async)?.city}} / {{ (object | async)?.state }}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

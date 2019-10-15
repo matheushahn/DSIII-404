@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ObjectService } from '../services/object.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-
+import { Object } from '../interfaces/Object';
 @Component({
   selector: 'app-objectDetails',
   templateUrl: './objectDetails.page.html',
@@ -11,30 +11,18 @@ import { NavController } from '@ionic/angular';
 })
 export class ObjectDetailsPage implements OnInit {
 
-  private objectId: string = null;
-  public object: Object = {};
-  private objectSubscription: Subscription;
+  private object: Observable<Object>;
 
   constructor(
     private objectService: ObjectService,
-    private activatedRoute: ActivatedRoute,
-    private navCtrl: NavController
+    private activatedRoute: ActivatedRoute
   ) {
-    this.objectId = this.activatedRoute.snapshot.params['id'];
-
-    if (this.objectId) this.loadObject();
+    let id = this.activatedRoute.snapshot.params['id'];
+    this.object = this.objectService.getObject(id);
   }
 
   ngOnInit() { }
 
-  ngOnDestroy() {
-    if (this.objectSubscription) this.objectSubscription.unsubscribe();
-  }
-
-  loadObject() {
-    this.objectSubscription = this.objectService.getObject(this.objectId).subscribe(data => {
-      this.object = data;
-    });
-  }
+  ngOnDestroy() { }
 
 }
