@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../interfaces/Category';
 import { Observable } from 'rxjs';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,9 @@ export class SearchPage implements OnInit {
 
   constructor(
       private categoryService: CategoryService,
-      formBuilder: FormBuilder
+      formBuilder: FormBuilder,
+      private modalController: ModalController,
+      private navParams: NavParams
   ) {
       this.searchFormGroup = formBuilder.group({
       searchTerm: [""],
@@ -29,6 +32,21 @@ export class SearchPage implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  async triggerSearch() {
+    await this.modalController.dismiss(
+        {
+            'searchTerm': this.searchFormGroup.value.searchTerm,
+            'state': this.searchFormGroup.value.state,
+            'city': this.searchFormGroup.value.city,
+            'category': this.searchFormGroup.value.category
+        }
+    );
+  }
+
+  async closeSearchModal(){
+      await this.modalController.dismiss();
   }
 
 }

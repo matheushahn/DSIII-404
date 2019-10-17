@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Buscar</ion-title>
     <ion-buttons slot="start">
-       <ion-icon name="arrow-back" routerLink="/home" class="header_back"></ion-icon>
+       <ion-icon name="close" (click)="closeSearchModal()" class="header_close"></ion-icon>
     </ion-buttons>
     
   </ion-toolbar>
@@ -28,3 +28,8 @@
     </form>
 
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="triggerSearch()" expand="block">Buscar</ion-button>
+  </ion-toolbar>
+</ion-footer>

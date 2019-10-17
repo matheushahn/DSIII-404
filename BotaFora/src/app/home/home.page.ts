@@ -4,6 +4,9 @@ import { LoadingController, ToastController } from '@ionic/angular';
 import { ObjectService } from 'src/app/services/object.service';
 import { Object } from 'src/app/interfaces/Object';
 import { Subscription, Observable } from 'rxjs';
+import { ModalController } from '@ionic/angular';
+
+import { SearchPage } from '../search/search.page';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +21,8 @@ export class HomePage implements OnInit {
     private authService: AuthenticationService,
     private loadingCtrl: LoadingController,
     private objectService: ObjectService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    public modalController: ModalController
   ) {
     this.objects= this.objectService.getObjects();
   }
@@ -56,4 +60,24 @@ export class HomePage implements OnInit {
     const toast = await this.toastCtrl.create({ message, duration: 2000 });
     toast.present();
   }
+
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      componentProps: { }
+    });
+ 
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+          this.objects = this.objectService.getFilteredObjects(dataReturned.data);
+          /*Trigger search service using the filter parameter: dataReturned.data.<searchTerm, state, city, category> 
+          
+          */
+
+      }
+    });
+ 
+    return await modal.present();
+  }
+
 }

@@ -17,6 +17,10 @@ import { Camera } from '@ionic-native/camera/ngx';
 
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
 
+import { SearchPageModule } from './search/search.module';
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,7 +31,8 @@ import { NgxMaskIonicModule } from 'ngx-mask-ionic';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    NgxMaskIonicModule.forRoot()
+    NgxMaskIonicModule.forRoot(),
+    SearchPageModule
   ],
   providers: [
     Camera,
