@@ -61,6 +61,12 @@ export class HomePage implements OnInit {
     toast.present();
   }
 
+  async applyFilter(data: Object){
+      /** Access filters: data.searchTerm data.state data.city 
+       Not being able to access this.objects values to filter them
+      */
+  }
+
   async openModal() {
     const modal = await this.modalController.create({
       component: SearchPage,
@@ -69,8 +75,7 @@ export class HomePage implements OnInit {
  
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
-         
-
+         this.applyFilter(dataReturned.data);
       }
     });
  
