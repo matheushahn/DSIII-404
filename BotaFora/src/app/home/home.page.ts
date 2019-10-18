@@ -69,10 +69,7 @@ export class HomePage implements OnInit {
  
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
-          this.objects = this.objectService.getFilteredObjects(dataReturned.data);
-          /*Trigger search service using the filter parameter: dataReturned.data.<searchTerm, state, city, category> 
-          
-          */
+         
 
       }
     });

@@ -25,10 +25,6 @@ export class ObjectService {
     );
   }
 
-  getFilteredObjects(filter: object){ /*Filter parameter has: searchTerm, state, city, category*/
-      return this.afs.collection<Object>('Objects', ref => ref.where('category', '==', 'mesas'));
-  }
-
   addObject(object: Object) {
     return this.objectsColletion.add(object);
   }
