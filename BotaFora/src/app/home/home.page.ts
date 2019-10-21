@@ -3,7 +3,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ObjectService } from 'src/app/services/object.service';
 import { Object } from 'src/app/interfaces/Object';
-import { Subscription, Observable } from 'rxjs';
+import { FilterData } from 'src/app/interfaces/FilterData';
+import { Observable } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 
 import { SearchPage } from '../search/search.page';
@@ -16,6 +17,7 @@ import { SearchPage } from '../search/search.page';
 export class HomePage implements OnInit {
   private loading: any;
   objects: Observable<Object[]>;
+  filterData: FilterData;
 
   constructor(
     private authService: AuthenticationService,
@@ -61,7 +63,12 @@ export class HomePage implements OnInit {
     toast.present();
   }
 
-  async applyFilter(data: Object){
+  async applyFilter(){
+    if (this.filterData.searchTerm || this.filterData.category || this.filterData.city || this.filterData.state) {
+      this.objects = this.objectService.getObjectByFilterData(this.filterData);
+    } else {
+      this.objects = this.objectService.getObjects();
+    }
       /** Access filters: data.searchTerm data.state data.city 
        Not being able to access this.objects values to filter them
       */
@@ -74,9 +81,8 @@ export class HomePage implements OnInit {
     });
  
     modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-         this.applyFilter(dataReturned.data);
-      }
+      this.filterData = dataReturned.data;
+      this.applyFilter();
     });
  
     return await modal.present();
