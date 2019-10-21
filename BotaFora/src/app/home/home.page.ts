@@ -64,7 +64,7 @@ export class HomePage implements OnInit {
   }
 
   async applyFilter(){
-    if (this.filterData.searchTerm || this.filterData.category || this.filterData.city || this.filterData.state) {
+    if (this.filterData && (this.filterData.searchTerm || this.filterData.category || this.filterData.city || this.filterData.state)) {
       this.objects = this.objectService.getObjectByFilterData(this.filterData);
     } else {
       this.objects = this.objectService.getObjects();
