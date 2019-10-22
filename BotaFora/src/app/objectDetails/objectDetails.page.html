@@ -8,11 +8,15 @@
   <ion-label>
     <h1>{{ (object | async)?.name }}</h1>
   </ion-label>
+  <ion-button *ngIf="showEditButton((object | async)?.userId)" [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">
+    Editar anúncio
+  </ion-button>
   <ion-card>
     <img [src]="(object | async)?.imageSrc" />
     <ion-card-header>
       <ion-label>
-        <p>Publicado em {{ (object | async)?.createdAt | date: 'dd/MM/yyyy' }} às {{ (object | async)?.createdAt | date: 'HH:mm' }}</p>
+        <p>Publicado em {{ (object | async)?.createdAt | date: 'dd/MM/yyyy' }} às
+          {{ (object | async)?.createdAt | date: 'HH:mm' }}</p>
       </ion-label>
     </ion-card-header>
   </ion-card>

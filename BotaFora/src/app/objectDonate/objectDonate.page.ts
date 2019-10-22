@@ -18,7 +18,7 @@ import { Category } from '../interfaces/Category';
 export class ObjectDonatePage implements OnInit {
   private objectId: string = null;
   public imageSrc: string;
-  public object: Object = {};
+  private object: Observable<Object>;
   private loading: any;
   private objectSubscription: Subscription;
   objectDonateFormGroup: FormGroup;
@@ -45,6 +45,9 @@ export class ObjectDonatePage implements OnInit {
       category: ["", [Validators.required]]
     });
     this.categories = this.categoryService.getCategories();
+    
+    let id = this.activatedRoute.snapshot.params['id'];    
+    if(id) this.loadObject(id);
   }
 
   ngOnInit() { 
@@ -53,28 +56,47 @@ export class ObjectDonatePage implements OnInit {
   ngOnDestroy() {
     if (this.objectSubscription) this.objectSubscription.unsubscribe();
   }
-
-  loadObject() {
-    this.objectSubscription = this.objectService.getObject(this.objectId).subscribe(data => {
-      this.object = data;
+  
+  loadObject(id) {
+    this.objectSubscription = this.objectService.getObject(id).subscribe(data => {
+      if(data.userId == this.authenticationService.getAuth().currentUser.uid) {
+        this.objectId = id;
+        this.object =  this.objectService.getObject(id);
+      }
     });
   }
-
+  
   async saveObject() {
     await this.presentLoading();
+    var date = new Date().getTime();
 
-    this.objectDonateFormGroup.value.userId = this.authenticationService.getAuth().currentUser.uid;
-    this.objectDonateFormGroup.value.createdAt = new Date().getTime();
-    this.objectDonateFormGroup.value.imageSrc = this.imageSrc ? this.imageSrc : ""; 
+    if (this.objectId) {
+      this.objectDonateFormGroup.value.updatedAt = date;
 
-    try {
-      await this.objectService.addObject(this.objectDonateFormGroup.value);
-      await this.loading.dismiss();
+      try {
+        await this.objectService.updateObject(this.objectId, this.objectDonateFormGroup.value);
+        await this.loading.dismiss();
 
-      this.navCtrl.navigateBack('/home');
-    } catch (error) {
-      this.presentToast('Erro ao tentar salvar o objeto');
-      this.loading.dismiss();
+        this.navCtrl.navigateBack('/home');
+      } catch (error) {
+        this.presentToast('Erro ao tentar atualizar o objeto');
+        this.loading.dismiss();
+      }
+    } else {
+      this.objectDonateFormGroup.value.userId = this.authenticationService.getAuth().currentUser.uid;
+      this.objectDonateFormGroup.value.createdAt = date;
+      this.objectDonateFormGroup.value.updatedAt = date;
+      this.objectDonateFormGroup.value.imageSrc = this.imageSrc ? this.imageSrc : ""; 
+
+      try {
+        await this.objectService.addObject(this.objectDonateFormGroup.value);
+        await this.loading.dismiss();
+
+        this.navCtrl.navigateBack('/home');
+      } catch (error) {
+        this.presentToast('Erro ao tentar salvar o objeto');
+        this.loading.dismiss();
+      }
     }
   }
 

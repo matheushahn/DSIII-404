@@ -8,6 +8,7 @@ export interface Object {
     state?: String;
     cep?: String;
     createdAt?: number;
+    updatedAt?: number;
     userId?: String;
     imageSrc?: String;
 }
