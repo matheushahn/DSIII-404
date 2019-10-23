@@ -8,9 +8,6 @@
   <ion-label>
     <h1>{{ (object | async)?.name }}</h1>
   </ion-label>
-  <ion-button *ngIf="showEditButton((object | async)?.userId)" [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">
-    Editar anúncio
-  </ion-button>
   <ion-card>
     <img [src]="(object | async)?.imageSrc" />
     <ion-card-header>
@@ -48,6 +45,9 @@
 
 <ion-footer>
   <ion-toolbar>
+    <ion-button expand="block" *ngIf="showEditButton((object | async)?.userId)" [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">
+      Editar anúncio
+    </ion-button>
     <ion-button expand="block">
       Tenho interesse!
     </ion-button>
