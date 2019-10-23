@@ -71,7 +71,13 @@ export class ObjectDonatePage implements OnInit {
       if(data.userId == this.authenticationService.getAuth().currentUser.uid) {
         this.objectId = id;
         this.object = this.objectService.getObject(id);
+        this.objectDonateFormGroup.get('name').setValue(data.name);
+        this.objectDonateFormGroup.get('description').setValue(data.description);
+        this.objectDonateFormGroup.get('city').setValue(data.city);
+        this.objectDonateFormGroup.get('state').setValue(data.state);
+        this.objectDonateFormGroup.get('cep').setValue(data.cep);
         this.objectDonateFormGroup.get('category').setValue(data.category);
+        this.objectDonateFormGroup.get('active').setValue(data.active);
       }
     });
   }
