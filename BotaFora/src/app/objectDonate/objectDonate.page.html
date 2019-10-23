@@ -20,13 +20,14 @@
           </ion-item>
           <ion-item>
             <ion-input placeholder="Descrição" value="{{ (object | async)?.description }}" type="text" formControlName="description"></ion-input>
-          </ion-item>
+          </ion-item>          
           <ion-item>
-              <ion-label class="dropLabel">Categoria</ion-label>
-              <ion-select formControlName="category" cancel-text="Cancelar" ok-text="Selecionar">
-                <ion-select-option *ngFor="let c of (categories | async)" [value]="c.category">{{c.category}}</ion-select-option>
-              </ion-select>
-          </ion-item>        
+            <ion-label class="dropLabel">Categoria</ion-label>
+            <ion-select formControlName="category" cancel-text="Cancelar" ok-text="Selecionar">
+              <ion-select-option *ngIf="defaultCategory" [value]="defaultCategory">{{defaultCategory}}</ion-select-option>
+              <ion-select-option *ngFor="let c of (categories | async)" [value]="c.category">{{c.category}}</ion-select-option>
+            </ion-select>
+        </ion-item>       
           <ion-item class="ion-margin-top">
             <ion-label position="stacked">Localização</ion-label>
             <ion-input placeholder="Cidade" type="text" value="{{ (object | async)?.city }}" formControlName="city"></ion-input>
