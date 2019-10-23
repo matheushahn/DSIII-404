@@ -23,6 +23,7 @@ export class ObjectDonatePage implements OnInit {
   private objectSubscription: Subscription;
   objectDonateFormGroup: FormGroup;
   categories: Observable<Array<Category>>;
+  defaultCategory: String;
 
   constructor(
     private objectService: ObjectService,
@@ -34,9 +35,9 @@ export class ObjectDonatePage implements OnInit {
     private loadingCtrl: LoadingController,
     private authenticationService: AuthenticationService,
     private toastCtrl: ToastController,
-    formBuilder: FormBuilder
+    private formBuilder: FormBuilder
   ) {
-    this.objectDonateFormGroup = formBuilder.group({
+    this.objectDonateFormGroup = this.formBuilder.group({
       name: ["", [Validators.required]],
       description: ["", [Validators.required]],
       city: ["", [Validators.required]],
@@ -46,8 +47,11 @@ export class ObjectDonatePage implements OnInit {
     });
     this.categories = this.categoryService.getCategories();
     
-    let id = this.activatedRoute.snapshot.params['id'];    
-    if(id) this.loadObject(id);
+    let id = this.activatedRoute.snapshot.params['id'];  
+    if(id) { 
+      this.setDefaultCategory(id);
+      this.loadObject(id);  
+    }  
   }
 
   ngOnInit() { 
@@ -56,16 +60,21 @@ export class ObjectDonatePage implements OnInit {
   ngOnDestroy() {
     if (this.objectSubscription) this.objectSubscription.unsubscribe();
   }
+
+  setDefaultCategory(id) {
+    this.objectService.getObject(id).subscribe(data => {this.defaultCategory=data.category;});
+  }
   
-  loadObject(id) {
+  loadObject(id) {    
     this.objectSubscription = this.objectService.getObject(id).subscribe(data => {
       if(data.userId == this.authenticationService.getAuth().currentUser.uid) {
         this.objectId = id;
-        this.object =  this.objectService.getObject(id);
+        this.object = this.objectService.getObject(id);
+        this.objectDonateFormGroup.get('category').setValue(data.category);
       }
     });
   }
-  
+
   async saveObject() {
     await this.presentLoading();
     var date = new Date().getTime();
