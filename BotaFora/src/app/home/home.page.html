@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list>
     <ion-item-group *ngFor="let object of (objects | async)">
-      <ion-item button [routerLink]="['/objectDetails', object.id]">
+      <ion-item *ngIf="object.active" button [routerLink]="['/objectDetails', object.id]">
         <ion-avatar slot="start" *ngIf="object.imageSrc">
           <img [src]="object.imageSrc">
         </ion-avatar>
