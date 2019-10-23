@@ -11,4 +11,5 @@ export interface Object {
     updatedAt?: number;
     userId?: String;
     imageSrc?: String;
+    active?: boolean;
 }
