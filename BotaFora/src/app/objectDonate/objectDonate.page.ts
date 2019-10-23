@@ -42,7 +42,8 @@ export class ObjectDonatePage implements OnInit {
       city: ["", [Validators.required]],
       state: ["", [Validators.required]],
       cep: ["", [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
-      category: ["", [Validators.required]]
+      category: ["", [Validators.required]],
+      active: [true]
     });
     this.categories = this.categoryService.getCategories();
     
