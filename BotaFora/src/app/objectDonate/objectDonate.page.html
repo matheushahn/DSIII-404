@@ -1,6 +1,9 @@
 <ion-app>
   <ion-header translucent>
     <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
       <ion-title>Cadastro de Objeto</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -16,35 +19,43 @@
         <form [formGroup]="objectDonateFormGroup">
           <ion-item>
             <ion-label position="stacked">Dados Básicos</ion-label>
-            <ion-input placeholder="Título" value="{{ (object | async)?.name }}" formControlName="name" type="text"></ion-input>
+            <ion-input placeholder="Título" value="{{ (object | async)?.name }}" formControlName="name" type="text">
+            </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="Descrição" value="{{ (object | async)?.description }}" type="text" formControlName="description"></ion-input>
-          </ion-item>          
+            <ion-input placeholder="Descrição" value="{{ (object | async)?.description }}" type="text"
+              formControlName="description"></ion-input>
+          </ion-item>
           <ion-item>
             <ion-label class="dropLabel">Categoria</ion-label>
             <ion-select formControlName="category" cancel-text="Cancelar" ok-text="Selecionar">
-              <ion-select-option *ngIf="defaultCategory" [value]="defaultCategory">{{defaultCategory}}</ion-select-option>
-              <ion-select-option *ngFor="let c of (categories | async)" [value]="c.category">{{c.category}}</ion-select-option>
+              <ion-select-option *ngIf="defaultCategory" [value]="defaultCategory">{{defaultCategory}}
+              </ion-select-option>
+              <ion-select-option *ngFor="let c of (categories | async)" [value]="c.category">{{c.category}}
+              </ion-select-option>
             </ion-select>
-        </ion-item>       
+          </ion-item>
           <ion-item class="ion-margin-top">
             <ion-label position="stacked">Localização</ion-label>
-            <ion-input placeholder="Cidade" type="text" value="{{ (object | async)?.city }}" formControlName="city"></ion-input>
+            <ion-input placeholder="Cidade" type="text" value="{{ (object | async)?.city }}" formControlName="city">
+            </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="Estado" type="text" value="{{ (object | async)?.state }}" formControlName="state"></ion-input>
+            <ion-input placeholder="Estado" type="text" value="{{ (object | async)?.state }}" formControlName="state">
+            </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="CEP" type="string" value="{{ (object | async)?.cep }}" formControlName="cep" mask="00000-000"></ion-input>
+            <ion-input placeholder="CEP" type="string" value="{{ (object | async)?.cep }}" formControlName="cep"
+              mask="00000-000"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Ativo</ion-label>
             <!--<ion-toggle slot="start" name="Ativo" checked></ion-toggle>-->
             <!--<ion-toggle [(ngModel)]=“active”></ion-toggle>-->
             <ion-toggle formControlName="active"></ion-toggle>
-          </ion-item> 
-          <ion-button [disabled]="objectDonateFormGroup.invalid" class="ion-margin" ion-padding expand="block" type="submit" (click)="saveObject()">Cadastrar Objeto!</ion-button>
+          </ion-item>
+          <ion-button [disabled]="objectDonateFormGroup.invalid" class="ion-margin" ion-padding expand="block"
+            type="submit" (click)="saveObject()">Salvar Objeto!</ion-button>
         </form>
       </ion-card-content>
     </ion-card>

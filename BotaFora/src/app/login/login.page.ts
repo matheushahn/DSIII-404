@@ -34,7 +34,9 @@ export class LoginPage implements OnInit {
     const loginCredentials: LoginCredential = this.loginFormGroup.value;
     this._authenticationService.login(loginCredentials)
       .then(() => {
-        this._router.navigate(["/home"]);
+        this._router.navigate(["/home"]).then(nav => {
+          window.location.reload();
+        });
       })
       .catch((error) => {
         this.showShortMiddleToast(error.message);

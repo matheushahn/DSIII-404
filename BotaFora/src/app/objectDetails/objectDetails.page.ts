@@ -21,7 +21,6 @@ export class ObjectDetailsPage implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.params['id'];
     this.object = this.objectService.getObject(id);
-    this.authenticationService = this.authenticationService;
   }
 
   ngOnInit() { }
