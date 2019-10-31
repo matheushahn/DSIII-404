@@ -44,7 +44,7 @@
       <ion-label>{{(object | async)?.city}} / {{ (object | async)?.state }}</ion-label>
     </ion-item>
   </ion-list>
-  <ion-list>
+  <ion-list *ngIf="showInterestList((object | async)?.userId)">
     <ion-list-header>
       Interessados
     </ion-list-header>

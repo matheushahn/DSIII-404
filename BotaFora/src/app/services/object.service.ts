@@ -60,6 +60,10 @@ export class ObjectService {
     return this.objectsCollection.doc<Object>(id).update(object);
   }
 
+  updateObjectCollection(id: string, collection_name: string, object: Object) {
+    return this.objectsCollection.doc<Object>(id).collection(collection_name).add(object);
+  }
+
   deleteObject(id: string) {
     return this.objectsCollection.doc(id).delete();
   }

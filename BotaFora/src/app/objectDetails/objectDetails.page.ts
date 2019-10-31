@@ -39,15 +39,13 @@ export class ObjectDetailsPage implements OnInit {
     return objectUserId == this.getCurrentUserId();
   }
 
+  showInterestList(objectUserId) {
+    return objectUserId == this.getCurrentUserId();
+  }
+
   addInterest(){
       var userId = this.getCurrentUserId();
-      var interest = {"userId" : userId, "timestamp" : new Date().getTime() };
-      if(this.object.interestList !== undefined){
-          this.object.interestList.push(interest);
-      }else{
-          this.object.interestList = [];
-          this.object.interestList.push(interest);
-      }
-      this.objectService.updateObject(this.activatedRoute.snapshot.params['id'], this.object);
+      var interest = {"userId" : userId, "timestamp" : new Date().getTime()};
+      this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
   }
 }
