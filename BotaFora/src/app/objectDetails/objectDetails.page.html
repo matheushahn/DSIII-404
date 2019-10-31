@@ -44,6 +44,14 @@
       <ion-label>{{(object | async)?.city}} / {{ (object | async)?.state }}</ion-label>
     </ion-item>
   </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Interessados
+    </ion-list-header>
+    <ion-item *ngFor="let interest of (object.interestList)">
+      <ion-label>{{(interest).userId}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>
@@ -51,7 +59,7 @@
     <ion-button expand="block" *ngIf="showEditButton((object | async)?.userId)" [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">
       Editar anúncio
     </ion-button>
-    <ion-button expand="block">
+    <ion-button expand="block" (click)="addInterest()">
       Tenho interesse!
     </ion-button>
   </ion-toolbar>

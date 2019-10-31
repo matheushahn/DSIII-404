@@ -5,6 +5,7 @@ import { AuthenticationService} from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Object } from '../interfaces/Object';
+
 @Component({
   selector: 'app-objectDetails',
   templateUrl: './objectDetails.page.html',
@@ -21,6 +22,7 @@ export class ObjectDetailsPage implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.params['id'];
     this.object = this.objectService.getObject(id);
+                    
   }
 
   ngOnInit() { }
@@ -35,5 +37,17 @@ export class ObjectDetailsPage implements OnInit {
 
   showEditButton(objectUserId) {
     return objectUserId == this.getCurrentUserId();
+  }
+
+  addInterest(){
+      var userId = this.getCurrentUserId();
+      var interest = {"userId" : userId, "timestamp" : new Date().getTime() };
+      if(this.object.interestList !== undefined){
+          this.object.interestList.push(interest);
+      }else{
+          this.object.interestList = [];
+          this.object.interestList.push(interest);
+      }
+      this.objectService.updateObject(this.activatedRoute.snapshot.params['id'], this.object);
   }
 }
