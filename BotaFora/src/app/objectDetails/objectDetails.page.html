@@ -48,8 +48,8 @@
     <ion-list-header>
       Interessados
     </ion-list-header>
-    <ion-item *ngFor="let interest of (object.interestList)">
-      <ion-label>{{(interest).userId}}</ion-label>
+    <ion-item *ngFor="let interest of object.interestList">
+      <ion-label>{{ interest.userId }}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
@@ -59,7 +59,7 @@
     <ion-button expand="block" *ngIf="showEditButton((object | async)?.userId)" [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">
       Editar anúncio
     </ion-button>
-    <ion-button expand="block" (click)="addInterest()">
+    <ion-button expand="block" *ngIf="showInterestButton((object | async)?.userId)" (click)="addInterest()">
       Tenho interesse!
     </ion-button>
   </ion-toolbar>
