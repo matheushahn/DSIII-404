@@ -19,4 +19,7 @@ export class UserService {
         .doc(this._angularFireAuth.auth.currentUser.uid)
         .set(credencials)
     }
+
+    //acho que aqui precisa ter um getUsers
+    
 }

@@ -23,6 +23,8 @@ const routes: Routes = [
   { path: 'objectDonate/:id', loadChildren: './objectDonate/objectDonate.module#ObjectDonatePageModule' },
   { path: 'objectDetails', loadChildren: './objectDetails/objectDetails.module#ObjectDetailsPageModule' },
   { path: 'objectDetails/:id', loadChildren: './objectDetails/objectDetails.module#ObjectDetailsPageModule' },
+  { path: 'objectInterestList', loadChildren: './objectInterestList/objectInterestList.module#ObjectInterestListPageModule' },
+  { path: 'objectInterestList/:id', loadChildren: './objectInterestList/objectInterestList.module#ObjectInterestListPageModule' },
   { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
   { path: 'myObjects', loadChildren: './myObjects/myObjects.module#MyObjectsPageModule' },
 

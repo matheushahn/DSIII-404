@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-//import { AuthenticationService} from '../services/authentication.service';
+import { AuthenticationService} from '../services/authentication.service';
 import { RegisterCredential } from 'src/app/interfaces/RegisterCredential';
 import { Observable } from 'rxjs';
 import { ModalController } from '@ionic/angular';
@@ -11,14 +11,14 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./objectInterestList.page.scss'],
 })
 export class ObjectInterestListPage implements OnInit {
-  users: Observable<User[]>;
+  users: Observable<User[]>; //ERRO
 
   constructor(
     private userService: UserService,
     //private authenticationService: AuthenticationService,
     public modalController: ModalController
     ) {
-    this.users = this.userService.getUsers();
+    this.users = this.userService.getUsers(); //ERRO
   }
 
   ngOnInit() { 
