@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Object } from '../interfaces/Object';
 import { Observable } from 'rxjs';
 import { FilterData } from '../interfaces/FilterData';
+import { ObjectInterest } from '../interfaces/ObjectInterest';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,10 @@ export class ObjectService {
 
   getObject(id: string) {
     return this.objectsCollection.doc<Object>(id).valueChanges();
+  }
+
+  getInterestList(id: string) {
+    return this.objectsCollection.doc<Object>(id).collection<ObjectInterest>("interestList").valueChanges();
   }
 
   updateObject(id: string, object: Object) {

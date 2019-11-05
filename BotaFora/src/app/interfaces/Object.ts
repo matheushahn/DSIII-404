@@ -1,3 +1,5 @@
+import { ObjectInterest } from './ObjectInterest';
+
 export interface Object {
     id?: String;
     name?: String;
@@ -12,4 +14,5 @@ export interface Object {
     userId?: String;
     imageSrc?: String;
     active?: boolean;
+    interestList?: Array<ObjectInterest>;
 }

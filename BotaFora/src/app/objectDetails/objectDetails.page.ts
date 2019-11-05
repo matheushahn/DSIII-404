@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Object } from '../interfaces/Object';
 import * as firebase from 'firebase';
+import { ObjectInterest } from '../interfaces/ObjectInterest';
 
 @Component({
   selector: 'app-objectDetails',
@@ -15,7 +16,7 @@ import * as firebase from 'firebase';
 export class ObjectDetailsPage implements OnInit {
 
   private object: Observable<Object>;
-  private interestList: Observable<Object>;
+  private interestList: Observable<ObjectInterest[]>;
 
   constructor(
     private objectService: ObjectService,
@@ -23,8 +24,8 @@ export class ObjectDetailsPage implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.snapshot.params['id'];
-    this.object = this.objectService.getObject(id);      
-    //this.interestList = this.objectService.getInterestList(id);          
+    this.object = this.objectService.getObject(id);
+    this.interestList = this.objectService.getInterestList(id);
   }
 
   ngOnInit() { }
@@ -51,13 +52,8 @@ export class ObjectDetailsPage implements OnInit {
 
   addInterest(){
       var userId = this.getCurrentUserId();
-      var interest = {"userId" : userId, "timestamp" : new Date().getTime()};
+      var interest: ObjectInterest = {"userId" : userId, "timestamp" : new Date().getTime()};
       //code for the subcollection option
-      //this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
-      this.objectService.updateObject( this.activatedRoute.snapshot.params['id'],
-          {
-              interestList: firebase.firestore.FieldValue.arrayUnion(interest)
-          }     
-      );
+      this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
   }
 }
