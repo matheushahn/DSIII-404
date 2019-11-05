@@ -7,6 +7,7 @@ import { NavController } from '@ionic/angular';
 import { Object } from '../interfaces/Object';
 import * as firebase from 'firebase';
 import { ObjectInterest } from '../interfaces/ObjectInterest';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-objectDetails',
@@ -20,6 +21,7 @@ export class ObjectDetailsPage implements OnInit {
 
   constructor(
     private objectService: ObjectService,
+    private userService: UserService,
     private authenticationService: AuthenticationService,
     private activatedRoute: ActivatedRoute
   ) {
@@ -50,10 +52,10 @@ export class ObjectDetailsPage implements OnInit {
     return objectUserId == this.getCurrentUserId();
   }
 
-  addInterest(){
+  async addInterest(){
       var userId = this.getCurrentUserId();
-      var interest: ObjectInterest = {"userId" : userId, "timestamp" : new Date().getTime()};
-      //code for the subcollection option
+      var name: String = await this.userService.getUserName(userId);
+      var interest: ObjectInterest = { userId: userId, name: name, timestamp: new Date().getTime()};
       this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
   }
 }
