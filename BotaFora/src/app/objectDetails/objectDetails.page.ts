@@ -3,7 +3,7 @@ import { Subscription, Observable } from 'rxjs';
 import { ObjectService } from '../services/object.service';
 import { AuthenticationService} from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { Object } from '../interfaces/Object';
 import * as firebase from 'firebase';
 import { ObjectInterest } from '../interfaces/ObjectInterest';
@@ -23,7 +23,8 @@ export class ObjectDetailsPage implements OnInit {
     private objectService: ObjectService,
     private userService: UserService,
     private authenticationService: AuthenticationService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastController: ToastController
   ) {
     let id = this.activatedRoute.snapshot.params['id'];
     this.object = this.objectService.getObject(id);
@@ -56,6 +57,8 @@ export class ObjectDetailsPage implements OnInit {
       var userId = this.getCurrentUserId();
       var name: String = await this.userService.getUserName(userId);
       var interest: ObjectInterest = { userId: userId, name: name, timestamp: new Date().getTime()};
-      this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
+      await this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
+      var toast = await this.toastController.create({ message: 'Interesse salvo com sucesso!', duration: 2000});
+      toast.present();
   }
 }
