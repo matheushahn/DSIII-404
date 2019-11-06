@@ -3,11 +3,13 @@ import { Subscription, Observable } from 'rxjs';
 import { ObjectService } from '../services/object.service';
 import { AuthenticationService} from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController, ModalController } from '@ionic/angular';
 import { Object } from '../interfaces/Object';
 import * as firebase from 'firebase';
 import { ObjectInterest } from '../interfaces/ObjectInterest';
 import { UserService } from '../services/user.service';
+
+import { ChatPage } from '../chat/chat.page';
 
 @Component({
   selector: 'app-objectDetails',
@@ -24,7 +26,8 @@ export class ObjectDetailsPage implements OnInit {
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private activatedRoute: ActivatedRoute,
-    private toastController: ToastController
+    private toastController: ToastController,
+    public modalController: ModalController
   ) {
     let id = this.activatedRoute.snapshot.params['id'];
     this.object = this.objectService.getObject(id);
@@ -60,5 +63,17 @@ export class ObjectDetailsPage implements OnInit {
       await this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
       var toast = await this.toastController.create({ message: 'Interesse salvo com sucesso!', duration: 2000});
       toast.present();
+  }
+
+  async openChatModal() {
+    const modal = await this.modalController.create({
+      component: ChatPage,
+      componentProps: { 
+          userId: this.getCurrentUserId(),
+          objectId: this.activatedRoute.snapshot.params['id']
+      }
+    });   
+ 
+    return await modal.present();
   }
 }

@@ -18,6 +18,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
 
 import { SearchPageModule } from './search/search.module';
+import { ChatPageModule } from './chat/chat.module';
 
 
 
@@ -32,7 +33,8 @@ import { SearchPageModule } from './search/search.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     NgxMaskIonicModule.forRoot(),
-    SearchPageModule
+    SearchPageModule,
+    ChatPageModule
   ],
   providers: [
     Camera,

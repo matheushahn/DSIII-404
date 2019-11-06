@@ -49,7 +49,7 @@
       Interessados
     </ion-list-header>
     <ion-item *ngFor="let interest of (interestList | async)">
-      <ion-label>{{ interest?.name }}</ion-label>
+      <ion-label (click)="openChatModal()">{{ interest?.name }}</ion-label>
     </ion-item>
     <ion-item *ngIf="(interestList | async)?.length < 1">
       <ion-label>Sem interessados</ion-label>
