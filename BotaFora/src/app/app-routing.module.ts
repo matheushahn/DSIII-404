@@ -24,8 +24,7 @@ const routes: Routes = [
   { path: 'objectDetails', loadChildren: './objectDetails/objectDetails.module#ObjectDetailsPageModule' },
   { path: 'objectDetails/:id', loadChildren: './objectDetails/objectDetails.module#ObjectDetailsPageModule' },
   { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
-  { path: 'myObjects', loadChildren: './myObjects/myObjects.module#MyObjectsPageModule' },
-  { path: 'chat', loadChildren: './chat/chat.module#ChatPageModule' }
+  { path: 'myObjects', loadChildren: './myObjects/myObjects.module#MyObjectsPageModule' }
 
 
 

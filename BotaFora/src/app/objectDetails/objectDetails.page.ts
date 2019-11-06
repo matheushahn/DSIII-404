@@ -5,11 +5,10 @@ import { AuthenticationService} from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, ToastController, ModalController } from '@ionic/angular';
 import { Object } from '../interfaces/Object';
-import * as firebase from 'firebase';
 import { ObjectInterest } from '../interfaces/ObjectInterest';
 import { UserService } from '../services/user.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
-import { ChatPage } from '../chat/chat.page';
 
 @Component({
   selector: 'app-objectDetails',
@@ -27,7 +26,8 @@ export class ObjectDetailsPage implements OnInit {
     private authenticationService: AuthenticationService,
     private activatedRoute: ActivatedRoute,
     private toastController: ToastController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private iab: InAppBrowser
   ) {
     let id = this.activatedRoute.snapshot.params['id'];
     this.object = this.objectService.getObject(id);
@@ -65,15 +65,12 @@ export class ObjectDetailsPage implements OnInit {
       toast.present();
   }
 
-  async openChatModal() {
-    const modal = await this.modalController.create({
-      component: ChatPage,
-      componentProps: { 
-          userId: this.getCurrentUserId(),
-          objectId: this.activatedRoute.snapshot.params['id']
-      }
-    });   
- 
-    return await modal.present();
+  openChatModal() {
+    const userId = this.getCurrentUserId();
+    const objectId = this.activatedRoute.snapshot.params['id'];
+    var chatName: string = userId.concat(objectId);
+    chatName = chatName.slice(0,28);
+    // The chat name can have 30 or less characters (bf + 28 chars combining object and user)
+    const browser = this.iab.create('https://tlk.io/bf' + chatName, '_self');
   }
 }
