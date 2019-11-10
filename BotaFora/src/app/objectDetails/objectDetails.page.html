@@ -22,7 +22,7 @@
   </ion-card>
   <ion-list>
     <ion-list-header>
-      Descrição
+      <h3>Descrição</h3>
     </ion-list-header>
     <ion-item>
       <ion-text>{{ (object | async)?.description }}</ion-text>
@@ -30,7 +30,7 @@
   </ion-list>
   <ion-list>
     <ion-list-header>
-      Categoria
+      <h3>Categoria</h3>
     </ion-list-header>
     <ion-item>
       <ion-label>{{ (object | async)?.category }}</ion-label>
@@ -38,7 +38,7 @@
   </ion-list>
   <ion-list>
     <ion-list-header>
-      Localização
+      <h3>Localização</h3>
     </ion-list-header>
     <ion-item>
       <ion-label>{{(object | async)?.city}} / {{ (object | async)?.state }}</ion-label>
@@ -46,10 +46,12 @@
   </ion-list>
   <ion-list *ngIf="showInterestList((object | async)?.userId)">
     <ion-list-header>
-      Interessados
+      <h3>Contatar interessados</h3>
     </ion-list-header>
     <ion-item *ngFor="let interest of (interestList | async)">
-      <ion-label (click)="openChatModal()">{{ interest?.name }}</ion-label>
+      <ion-icon name="chatboxes"></ion-icon> 
+      <ion-label (click)="openChatModal()">{{ interest?.name }}
+    </ion-label>
     </ion-item>
     <ion-item *ngIf="(interestList | async)?.length < 1">
       <ion-label>Sem interessados</ion-label>
