@@ -49,7 +49,9 @@
       <h3>Contatar interessados</h3>
     </ion-list-header>
     <ion-item *ngFor="let interest of (interestList | async)">
-      <ion-icon name="chatboxes"></ion-icon> 
+        <div class="ion-margin-end">
+          <ion-icon name="chatboxes"></ion-icon> 
+        </div>
       <ion-label (click)="openChatModal()">{{ interest?.name }}
     </ion-label>
     </ion-item>
