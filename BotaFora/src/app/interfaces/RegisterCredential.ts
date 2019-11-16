@@ -4,6 +4,7 @@ export interface RegisterCredential {
     email: string;
     password: string;
     confirmedPassword: string;
+    phoneNumber: string;
     street: string;
     number: number;
     complement: string;

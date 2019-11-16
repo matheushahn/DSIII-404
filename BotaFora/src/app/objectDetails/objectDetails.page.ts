@@ -59,7 +59,8 @@ export class ObjectDetailsPage implements OnInit {
   async addInterest(){
       var userId = this.getCurrentUserId();
       var name: String = await this.userService.getUserName(userId);
-      var interest: ObjectInterest = { userId: userId, name: name, timestamp: new Date().getTime()};
+      var phoneNumber: String = await this.userService.getUserPhoneNumber(userId);
+      var interest: ObjectInterest = { userId: userId, name: name, phoneNumber: phoneNumber, timestamp: new Date().getTime()};
       await this.objectService.updateObjectCollection(this.activatedRoute.snapshot.params['id'], "interestList", interest);
       var toast = await this.toastController.create({ message: 'Interesse salvo com sucesso!', duration: 2000});
       toast.present();
@@ -72,5 +73,9 @@ export class ObjectDetailsPage implements OnInit {
     chatName = chatName.slice(0,28);
     // The chat name can have 30 or less characters (bf + 28 chars combining object and user)
     const browser = this.iab.create('https://tlk.io/bf' + chatName, '_self');
+  }
+
+  openWhatsapp(phone_num){
+    window.open("http://wa.me/55"+phone_num,'_system', 'location=yes');
   }
 }

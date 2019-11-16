@@ -25,6 +25,7 @@ export class SignupPage implements OnInit {
         name: ["", [Validators.required]],
         lastName: ["", [Validators.required]],
         email: ["", [Validators.required, Validators.email]],
+        phoneNumber: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
         password: ["", [Validators.required, Validators.minLength(6)]],
         confirmedPassword: ["", [Validators.required, Validators.minLength(6)]],
         street: ["", [Validators.required]],

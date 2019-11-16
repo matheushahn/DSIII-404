@@ -52,7 +52,7 @@
         <div class="ion-margin-end">
           <ion-icon name="chatboxes"></ion-icon> 
         </div>
-      <ion-label (click)="openChatModal()">{{ interest?.name }}
+      <ion-label (click)="openWhatsapp((interest)?.phoneNumber)">{{ interest?.name }}
     </ion-label>
     </ion-item>
     <ion-item *ngIf="(interestList | async)?.length < 1">

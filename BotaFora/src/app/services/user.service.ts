@@ -35,4 +35,18 @@ export class UserService {
           return "";
         });
     }
+
+    async getUserPhoneNumber(id: string): Promise<String> {
+      return await this._angularFirestore
+        .collection("users")
+        .doc(id)
+        .get()
+        .toPromise()
+        .then((value: DocumentSnapshot<RegisterCredential>) => {
+          return value.data().phoneNumber;
+        }).catch((err) => {
+          console.log(err)
+          return "";
+        });
+    }
 }
