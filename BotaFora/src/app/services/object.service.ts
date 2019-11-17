@@ -61,6 +61,10 @@ export class ObjectService {
     return this.objectsCollection.doc<Object>(id).collection<ObjectInterest>("interestList").valueChanges();
   }
 
+  getInterestListFilterByUser(id: string, userId: string) {
+    return this.objectsCollection.doc<Object>(id).collection<ObjectInterest>("interestList", ref => ref.where('userId', '==', userId)).valueChanges();
+  }
+
   updateObject(id: string, object: Object) {
     return this.objectsCollection.doc<Object>(id).update(object);
   }

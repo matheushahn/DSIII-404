@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Detalhes do objeto</ion-title>
   </ion-toolbar>
@@ -49,11 +49,11 @@
       <h3>Contatar interessados</h3>
     </ion-list-header>
     <ion-item *ngFor="let interest of (interestList | async)">
-        <div class="ion-margin-end">
-          <ion-icon name="chatboxes"></ion-icon> 
-        </div>
+      <div class="ion-margin-end">
+        <ion-icon name="chatboxes"></ion-icon>
+      </div>
       <ion-label (click)="openWhatsapp((interest)?.phoneNumber)">{{ interest?.name }}
-    </ion-label>
+      </ion-label>
     </ion-item>
     <ion-item *ngIf="(interestList | async)?.length < 1">
       <ion-label>Sem interessados</ion-label>
@@ -63,11 +63,17 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" *ngIf="showEditButton((object | async)?.userId)" [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">
-      Editar anúncio
+    <ion-button expand="block" *ngIf="(interestListCurrentUser | async)?.length >= 1">
+      Interesse cadastrado!
     </ion-button>
-    <ion-button expand="block" *ngIf="showInterestButton((object | async)?.userId)" (click)="addInterest()">
+    <ion-button expand="block"
+      *ngIf="showInterestButton((object | async)?.userId) && (interestListCurrentUser | async)?.length < 1"
+      (click)="addInterest()">
       Tenho interesse!
+    </ion-button>
+    <ion-button expand="block" *ngIf="showEditButton((object | async)?.userId)"
+      [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">
+      Editar anúncio
     </ion-button>
   </ion-toolbar>
 </ion-footer>
