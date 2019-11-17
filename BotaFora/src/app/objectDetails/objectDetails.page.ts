@@ -17,15 +17,15 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 })
 export class ObjectDetailsPage implements OnInit {
 
-  private object: Observable<Object>;
-  private interestList: Observable<ObjectInterest[]>;
+  object: Observable<Object>;
+  interestList: Observable<ObjectInterest[]>;
   isMyUserInterested: Observable<boolean>|null = null;
 
   constructor(
     private objectService: ObjectService,
     private userService: UserService,
     private authenticationService: AuthenticationService,
-    private activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute,
     private toastController: ToastController,
     public modalController: ModalController,
     private iab: InAppBrowser

@@ -18,7 +18,7 @@ import { Category } from '../interfaces/Category';
 export class ObjectDonatePage implements OnInit {
   private objectId: string = null;
   public imageSrc: string;
-  private object: Observable<Object>;
+  public object: Observable<Object>;
   private loading: any;
   private objectSubscription: Subscription;
   objectDonateFormGroup: FormGroup;

@@ -12,12 +12,13 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { environment } from 'src/environments/environment';
 import { Camera } from '@ionic-native/camera/ngx';
 
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
 
 import { SearchPageModule } from './search/search.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -32,7 +33,8 @@ import { SearchPageModule } from './search/search.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     NgxMaskIonicModule.forRoot(),
-    SearchPageModule
+    SearchPageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     Camera,
