@@ -63,13 +63,13 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" *ngIf="(interestListCurrentUser | async)?.length >= 1">
-      Interesse cadastrado!
-    </ion-button>
     <ion-button expand="block"
-      *ngIf="showInterestButton((object | async)?.userId) && (interestListCurrentUser | async)?.length < 1"
+      *ngIf="!(isMyUserInterested | async) && !showEditButton((object | async)?.userId)"
       (click)="addInterest()">
       Tenho interesse!
+    </ion-button>
+    <ion-button expand="block" *ngIf="(isMyUserInterested | async)">
+        Interesse cadastrado!
     </ion-button>
     <ion-button expand="block" *ngIf="showEditButton((object | async)?.userId)"
       [routerLink]="['/objectDonate', this.activatedRoute.snapshot.params['id']]">

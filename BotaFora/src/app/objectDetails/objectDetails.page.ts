@@ -19,7 +19,7 @@ export class ObjectDetailsPage implements OnInit {
 
   private object: Observable<Object>;
   private interestList: Observable<ObjectInterest[]>;
-  private interestListCurrentUser: Observable<ObjectInterest[]>;
+  isMyUserInterested: Observable<boolean>|null = null;
 
   constructor(
     private objectService: ObjectService,
@@ -33,9 +33,7 @@ export class ObjectDetailsPage implements OnInit {
     let id = this.activatedRoute.snapshot.params['id'];
     this.object = this.objectService.getObject(id);
     this.interestList = this.objectService.getInterestList(id);
-    setTimeout(() => {
-      this.interestListCurrentUser = this.objectService.getInterestListFilterByUser(id, this.getCurrentUserId());  
-    }, 3000);    
+    this.showInterestButton();
   }
 
   ngOnInit() {}
@@ -52,8 +50,16 @@ export class ObjectDetailsPage implements OnInit {
     return objectUserId == this.getCurrentUserId();
   }
 
-  showInterestButton(objectUserId) {
-    return objectUserId !== this.getCurrentUserId();
+  showInterestButton() {
+    this.isMyUserInterested = new Observable<boolean>((observer) => {
+      this.interestList.subscribe(interestList => {
+        const userId = this.getCurrentUserId();
+        let result = interestList.some(item => {
+          return item.userId == userId;
+        });
+        observer.next(result);
+      });
+    });
   }
 
   showInterestList(objectUserId) {
