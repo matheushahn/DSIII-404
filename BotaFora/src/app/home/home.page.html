@@ -14,12 +14,17 @@
   <ion-list>
     <ion-item-group *ngFor="let object of (objects | async)">
       <ion-item *ngIf="object.active" button [routerLink]="['/objectDetails', object.id]">
-        <ion-avatar slot="start" *ngIf="object.imageSrc">
+        <ion-avatar slot="start" *ngIf="object.imageSrc != null; then thenBlock else elseBlock">
+            <ng-template #thenBlock>
           <img [src]="object.imageSrc">
+        </ng-template>
+          <ng-template #elseBlock>
+           <img [src]= "assets/icon/camera.svg" alt="your image is BROKEN">
+             </ng-template>
         </ion-avatar>
         <ion-label>
-          <p>{{ object.name }}</p>
-          <p>{{ object.createdAt | date: 'dd/MM/yyyy' }}</p>
+         <p>{{ object.name }}</p>
+         <p>{{ object.createdAt | date: 'dd/MM/yyyy' }}</p>
         </ion-label>
       </ion-item>
     </ion-item-group>

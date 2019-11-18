@@ -1,25 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Bota Fora</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-content>
+  <div class="login-logo">
+    <img src="assets/img/LOGO.svg" alt="your image is BROKEN">
+  </div>
+  
+  
+  <ion-text >
+      <div class="text">
+      <p>Oi!</p>
+    </div>
+    </ion-text>
+  
+    <ion-text >
+        <div class="text2">
+        <p>Bem vindo ao BotaFora!</p>
+      </div>
+            </ion-text>
+
       <form [formGroup]="loginFormGroup">
-        <ion-item>
-          <ion-label>Email</ion-label>
+          <ion-list>
+              <ion-item>  
+                <ion-label color="primary">   Email</ion-label>
           <ion-input formControlName="email" type="email"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Senha</ion-label>
+          <ion-label color="primary">   Senha</ion-label>
           <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
 
-        <ion-button (click)="login()" [disabled]="loginFormGroup.invalid" class="ion-margin-top" expand="full">Entrar</ion-button>
-        <ion-button routerLink="/signup" fill="clear" expand="full" routerDirection="forward">Ou criar uma conta</ion-button>
+        <ion-button (click)="login()" [disabled]="loginFormGroup.invalid" class="ion-margin-top" expand="block" color="primary">Entrar</ion-button>
+        
+        <ion-text >
+            <div class="text3">
+            <p></p>
+            <p>Ainda não é membro?</p>
+          </div>
+          </ion-text>
+        
+        
+        <ion-button routerLink="/signup" fill="outline" expand="block" routerDirection="forward">Participar</ion-button>
+      </ion-list>
       </form>
-    </ion-card-content>
-  </ion-card>
+    
 </ion-content>
