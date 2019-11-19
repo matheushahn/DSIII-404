@@ -10,12 +10,13 @@
 <ion-content>
     <ion-list>
       <ion-item-group *ngFor="let object of (objects | async)">
-        <ion-item *ngIf="showObject(object.userId)" button [routerLink]="['/objectDetails', object.id]">
-          <ion-avatar slot="start" *ngIf="object.imageSrc">
-            <img [src]="object.imageSrc">
+        <ion-item *ngIf="showObject(object.userId)" button [routerLink]="['/objectDetails', object.id]"> 
+          <ion-avatar slot="start">
+              <img *ngIf="object.imageSrc" [src]="object.imageSrc">
+              <img *ngIf="!object.imageSrc" src="assets/img/camera.png">
           </ion-avatar>
           <ion-label>
-            <p>{{ object.name }}</p>
+            <h3>{{ object.name }}</h3>
             <p>{{ object.createdAt | date: 'dd/MM/yyyy' }}</p>
             <p>{{ object.active ? "Anúncio ativo":"Anúncio inativo" }}</p>
           </ion-label>
